@@ -10,10 +10,10 @@ const ctx = canvas.getContext('2d')
 // User-set options
 let DISTANCE = 3
 let DIMENSION = 4
-let SCALING = 200
+let SCALING = 500
 let SPEED = 0.01
 let ISOMETRIC = false
-let ROTATIONS = ['YW', 'XZ']
+let ROTATIONS = ['XW', 'YZ']
 
 // Settings and constants
 const HEIGHT = 400, WIDTH = 400

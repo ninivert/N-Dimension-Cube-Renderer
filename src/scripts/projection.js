@@ -10,6 +10,7 @@ function getProjectionMatrix(dimensions, perspective) {
 	[      ...      ]
 	[0, 0, ..., p, 0]
 	[0, 0, ..., 0, 0]
+	But we are excluding the last line because we want (x, y, z) --> (x, y) and not (x, y, 0)
 	If the dimension is 2, we don't need to project it to dimension 1 --> identity matix
 	If the dimension is 1, we need to project into 2 dimensions (add a dimension) --> [[1], [0]] matrix
 	*/
@@ -22,7 +23,7 @@ function getProjectionMatrix(dimensions, perspective) {
 	else if (dimensions === 2) {
 		matrix = Matrix.identity(2)
 	} else {
-		matrix = Matrix.new(dimensions, dimensions)
+		matrix = Matrix.new(dimensions-1, dimensions)
 
 		for (let i=0; i<dimensions-1; i++) {
 			matrix[i][i] = perspective

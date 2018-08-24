@@ -1,7 +1,3 @@
-/*
-Project from any dimension in 2D using perspective
-*/
-
 //
 // Rendering
 //
@@ -11,7 +7,7 @@ function draw() {
 	ctx.fillStyle = '#fff'
 	ctx.fillRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT)
 
-	let point, rotated, projected
+	let point, rotated, projected, perspective
 	let points = new Array(FIGURE.length)
 
 	// Rotating, projecting the vertices, and storing them
@@ -32,23 +28,19 @@ function draw() {
 		rotated = Matrix.dot(rotated, point)
 		
 		/*
-		Note: If you are using more sophisticated projection matrices,
-		you'll need to do 2D · 3D · ... · nD all the way
-		Because we are only using identity matrices (of which one is scaled),
-		we can ignore these steps
-		We are projecting
-			- from 4D into 3D with perspective
-			- from 3D into 2D orthogonally
+		Note: for every dimension strictly higher than 2
+		we are projecting {rotated} from dimension n to n-1, and repeat until we hit 2D 
 		*/
 
-		let perspective
-		if (ISOMETRIC) {
-			perspective = 1 
-		} else {
-			perspective = 1/(DISTANCE - rotated[DIMENSION-1][0])
+		projected = Matrix.from(rotated)
+		for (let j=DIMENSION; j>2; j--) {
+			if (ISOMETRIC) {
+				perspective = 1
+			} else {
+				perspective = getPerspectiveScalar(projected[j-1][0])
+			}
+			projected = Matrix.dot(getProjectionMatrix(j, perspective), projected)
 		}
-		projected = getProjectionMatrix(DIMENSION, perspective)
-		projected = Matrix.dot(projected, rotated)
 		projected = Matrix.scale(projected, SCALING)
 
 		points[i] = [projected[0][0], projected[1][0]]
@@ -106,4 +98,9 @@ function connectVertices(points) {
 
 	ctx.strokeStyle = '#000'
 	ctx.stroke()
+}
+
+
+function getPerspectiveScalar(scalar) {
+	return 1/(DISTANCE + scalar)
 }
