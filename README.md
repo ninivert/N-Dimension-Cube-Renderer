@@ -8,7 +8,7 @@ I tried my best to document the source code (src directory) as well a possible. 
 
 Link to the video that inspired me to do this: [The Coding Train - Coding Challenge #113: 4D Hypercube](https://www.youtube.com/watch?v=XE3YDVdQSPo).
 
-[Live Demo](#).
+[Live Demo](https://ninivert.github.io/N-Dimension-Cube-Renderer/).
 
 ## Todo
 
