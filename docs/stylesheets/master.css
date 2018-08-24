@@ -16,7 +16,7 @@ body {
   body a {
     color: #eee; }
 
-.wrapper {
+.center {
   margin: auto;
   padding: 2rem;
   width: 1200px;
@@ -25,52 +25,60 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .wrapper .render {
-    margin-bottom: 1rem; }
-    .wrapper .render h1 {
-      font-weight: normal;
-      line-height: 1;
-      margin: 0;
-      margin-bottom: 1rem; }
-    .wrapper .render canvas {
-      max-width: 100%;
-      margin: 0 auto;
-      display: block; }
-  .wrapper .controls .row {
-    margin-bottom: 1rem; }
-  .wrapper .controls span small {
-    display: block;
-    color: #aaa;
-    font-size: 0.7em; }
-  .wrapper .controls form {
-    margin: 0;
+  .center main {
     width: 100%; }
-    .wrapper .controls form input[type='number'] {
-      width: 100%;
+    .center main h1 {
       margin: 0;
-      margin-top: 0.5rem;
-      padding: 0;
-      padding-bottom: 0.4rem;
-      border: none;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
       border-bottom: 1px solid #666;
-      background: transparent;
-      color: #eee;
+      font-weight: normal;
       font-size: 1rem;
-      cursor: n-resize; }
-    .wrapper .controls form input[type='checkbox'] {
-      display: none; }
-      .wrapper .controls form input[type='checkbox'] + label {
-        display: inline-block;
-        color: #666;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1; }
+    .center main .render {
+      margin-bottom: 1rem; }
+      .center main .render canvas {
+        max-width: 100%;
+        margin: 0 auto;
+        display: block; }
+    .center main .controls .row {
+      margin-bottom: 1rem; }
+    .center main .controls span small {
+      display: block;
+      color: #aaa;
+      font-size: 0.7em; }
+    .center main .controls form {
+      margin: 0;
+      width: 100%; }
+      .center main .controls form input[type='number'] {
+        width: 100%;
+        margin: 0;
         margin-top: 0.5rem;
-        margin-right: 0.5rem;
-        cursor: pointer; }
-      .wrapper .controls form input[type='checkbox']:checked + label {
-        color: #eee; }
-    .wrapper .controls form#isometric input[type='checkbox'] + label::after {
-      content: 'Nope'; }
-    .wrapper .controls form#isometric input[type='checkbox']:checked + label::after {
-      content: 'Yup'; }
+        padding: 0;
+        padding-bottom: 0.4rem;
+        border: none;
+        border-bottom: 1px solid #666;
+        background: transparent;
+        color: #eee;
+        font-size: 1rem;
+        cursor: n-resize; }
+      .center main .controls form input[type='checkbox'] {
+        display: none; }
+        .center main .controls form input[type='checkbox'] + label {
+          display: inline-block;
+          color: #666;
+          margin-top: 0.5rem;
+          margin-right: 0.5rem;
+          cursor: pointer; }
+        .center main .controls form input[type='checkbox']:checked + label {
+          color: #eee; }
+      .center main .controls form#isometric input[type='checkbox'] + label::after {
+        content: 'Nope'; }
+      .center main .controls form#isometric input[type='checkbox']:checked + label::after {
+        content: 'Yup'; }
 
 .row {
   width: 100%;

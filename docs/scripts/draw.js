@@ -1,9 +1,5 @@
 'use strict';
 
-/*
-Project from any dimension in 2D using perspective
-*/
-
 //
 // Rendering
 //
@@ -15,7 +11,8 @@ function draw() {
 
 	var point = void 0,
 	    rotated = void 0,
-	    projected = void 0;
+	    projected = void 0,
+	    perspective = void 0;
 	var points = new Array(FIGURE.length);
 
 	// Rotating, projecting the vertices, and storing them
@@ -36,23 +33,19 @@ function draw() {
 		rotated = Matrix.dot(rotated, point);
 
 		/*
-  Note: If you are using more sophisticated projection matrices,
-  you'll need to do 2D · 3D · ... · nD all the way
-  Because we are only using identity matrices (of which one is scaled),
-  we can ignore these steps
-  We are projecting
-  	- from 4D into 3D with perspective
-  	- from 3D into 2D orthogonally
+  Note: for every dimension strictly higher than 2
+  we are projecting {rotated} from dimension n to n-1, and repeat until we hit 2D 
   */
 
-		var perspective = void 0;
-		if (ISOMETRIC) {
-			perspective = 1;
-		} else {
-			perspective = 1 / (DISTANCE - rotated[DIMENSION - 1][0]);
+		projected = Matrix.from(rotated);
+		for (var _j = DIMENSION; _j > 2; _j--) {
+			if (ISOMETRIC) {
+				perspective = 1;
+			} else {
+				perspective = getPerspectiveScalar(projected[_j - 1][0]);
+			}
+			projected = Matrix.dot(getProjectionMatrix(_j, perspective), projected);
 		}
-		projected = getProjectionMatrix(DIMENSION, perspective);
-		projected = Matrix.dot(projected, rotated);
 		projected = Matrix.scale(projected, SCALING);
 
 		points[i] = [projected[0][0], projected[1][0]];
@@ -108,5 +101,9 @@ function connectVertices(points) {
 
 	ctx.strokeStyle = '#000';
 	ctx.stroke();
+}
+
+function getPerspectiveScalar(scalar) {
+	return 1 / (DISTANCE + scalar);
 }
 //# sourceMappingURL=draw.js.map

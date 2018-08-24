@@ -65,6 +65,7 @@ CONTROLS.init.scaling = function () {
 	var input = document.createElement('input');
 	input.type = 'number';
 	input.value = SCALING;
+	input.step = 20;
 
 	this.DOM.children.scaling = input;
 	this.DOM.forms.scaling.appendChild(input);
@@ -207,9 +208,6 @@ CONTROLS.callback.distance = function () {
 	if (isNaN(value)) {
 		return false;
 	}
-
-	// Take the value and clamp it between [0, Infinity]
-	value = Math.max(0, value);
 
 	DISTANCE = value;
 };

@@ -12,10 +12,10 @@ var ctx = canvas.getContext('2d');
 // User-set options
 var DISTANCE = 3;
 var DIMENSION = 4;
-var SCALING = 200;
+var SCALING = 500;
 var SPEED = 0.01;
 var ISOMETRIC = false;
-var ROTATIONS = ['YW', 'XZ'];
+var ROTATIONS = ['XW', 'YZ'];
 
 // Settings and constants
 var HEIGHT = 400,

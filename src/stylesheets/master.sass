@@ -22,7 +22,7 @@ body
 	a
 		color: $white
 
-.wrapper
+.center
 	margin: auto
 	padding: 2rem
 	width: 1200px
@@ -35,66 +35,76 @@ body
 	
 	// background: #fff
 
-	.render
-		margin-bottom: 1rem
+	main
+		width: 100%
 
 		h1
+			margin: 0
+			margin-bottom: 2rem
+			padding-bottom: 1rem
+			border-bottom: 1px solid $dimgray
 			font-weight: normal
+			font-size: 1rem
+			text-align: center
+			text-transform: uppercase
+			letter-spacing: 2px
 			line-height: 1
-			margin: 0
+
+		.render
 			margin-bottom: 1rem
 
-		canvas
-			max-width: 100%
-			margin: 0 auto
-			display: block
 
-	.controls
-		.row
-			margin-bottom: 1rem
-
-		span
-			small
+			canvas
+				max-width: 100%
+				margin: 0 auto
 				display: block
-				color: $gray
-				font-size: 0.7em
 
-		form
-			margin: 0
-			width: 100%
+		.controls
+			.row
+				margin-bottom: 1rem
 
-			input[type='number']
-				width: 100%
+			span
+				small
+					display: block
+					color: $gray
+					font-size: 0.7em
+
+			form
 				margin: 0
-				margin-top: 0.5rem
-				padding: 0
-				padding-bottom: 0.4rem
-				border: none
-				border-bottom: 1px solid $dimgray
-				background: transparent
-				color: $white
-				font-size: 1rem
-				cursor: n-resize
+				width: 100%
 
-			input[type='checkbox']
-				display: none
-
-				& + label
-					display: inline-block
-					color: $dimgray
+				input[type='number']
+					width: 100%
+					margin: 0
 					margin-top: 0.5rem
-					margin-right: 0.5rem
-					cursor: pointer
-					
-				&:checked + label
+					padding: 0
+					padding-bottom: 0.4rem
+					border: none
+					border-bottom: 1px solid $dimgray
+					background: transparent
 					color: $white
+					font-size: 1rem
+					cursor: n-resize
 
-			&#isometric
-				input[type='checkbox'] + label::after
-					content: 'Nope'
+				input[type='checkbox']
+					display: none
 
-				input[type='checkbox']:checked + label::after
-					content: 'Yup'
+					& + label
+						display: inline-block
+						color: $dimgray
+						margin-top: 0.5rem
+						margin-right: 0.5rem
+						cursor: pointer
+						
+					&:checked + label
+						color: $white
+
+				&#isometric
+					input[type='checkbox'] + label::after
+						content: 'Nope'
+
+					input[type='checkbox']:checked + label::after
+						content: 'Yup'
 
 .row
 	width: 100%
