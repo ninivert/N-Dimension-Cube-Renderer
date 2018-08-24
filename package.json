@@ -1,0 +1,46 @@
+{
+  "name": "n-dimension-renderer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "watch": {
+    "pug": {
+      "patterns": "src/views",
+      "extensions": "pug",
+      "quiet": false,
+      "delay": 200
+    },
+    "sass": {
+      "patterns": "src/stylesheets",
+      "extensions": "sass,scss",
+      "quiet": false,
+      "delay": 200
+    },
+    "babel": {
+      "patterns": "src/scripts",
+      "extensions": "js",
+      "quiet": false,
+      "delay": 200
+    }
+  },
+  "scripts": {
+    "start": "http-server docs",
+    "dev": "npm-watch",
+    "babel": "babel src/scripts --out-dir docs/scripts --presets es2015 --source-maps",
+    "sass": "node-sass src/stylesheets -o docs/stylesheets",
+    "pug": "pug src/views --out docs"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "http-server": "^0.11.1",
+    "node-sass": "^4.9.2",
+    "npm-watch": "^0.3.0",
+    "pug": "^2.0.3",
+    "pug-cli": "^1.0.0-alpha6"
+  },
+  "dependencies": {}
+}
