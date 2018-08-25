@@ -7,7 +7,10 @@ function draw() {
 	ctx.fillStyle = '#fff'
 	ctx.fillRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT)
 
-	let point, rotated, projected, perspective
+	// Matrices
+	let point, rotated, projected
+	// Scalars and indices
+	let perspective, rotation
 	let points = new Array(FIGURE.length)
 
 	// Rotating, projecting the vertices, and storing them
@@ -23,7 +26,8 @@ function draw() {
 
 		rotated = Matrix.identity(DIMENSION)
 		for (let j=0; j<ROTATIONS.length; j++) {
-			rotated = Matrix.dot(rotated, getRotationMatrix[DIMENSION-1][ROTATIONS[j]](angle))
+			rotation = ROTATIONS[j]
+			rotated = Matrix.dot(rotated, getRotationMatrix(rotation[0], rotation[1], DIMENSION, ANGLE))
 		}
 		rotated = Matrix.dot(rotated, point)
 		
@@ -49,7 +53,7 @@ function draw() {
 	drawVertices(points)
 	connectVertices(points)
 
-	angle += SPEED
+	ANGLE += SPEED
 
 	NEXTFRAME = requestAnimationFrame(draw)
 }

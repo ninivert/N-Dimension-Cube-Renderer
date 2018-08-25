@@ -2,7 +2,7 @@
 // Projection
 //
 
-function getProjectionMatrix(dimensions, perspective) {
+function getProjectionMatrix(dimension, perspective) {
 	/*
 	Return a simple projection matrix that depends on p (perspective)
 	[p, 0, ..., 0, 0]
@@ -15,17 +15,23 @@ function getProjectionMatrix(dimensions, perspective) {
 	If the dimension is 1, we need to project into 2 dimensions (add a dimension) --> [[1], [0]] matrix
 	*/
 
-	let matrix
-
+	/*
+	I won't need 1D projections because in draw.js projections only happen
+	for dimensions strictly higher than 2
+	But for reference purposes, here it is 
 	if (dimensions === 1) {
 		matrix = Matrix.from([[1], [0]])
 	}
-	else if (dimensions === 2) {
+	*/
+
+	let matrix
+
+	if (dimension === 2) {
 		matrix = Matrix.identity(2)
 	} else {
-		matrix = Matrix.new(dimensions-1, dimensions)
+		matrix = Matrix.new(dimension-1, dimension)
 
-		for (let i=0; i<dimensions-1; i++) {
+		for (let i=0; i<dimension-1; i++) {
 			matrix[i][i] = perspective
 		}
 	}

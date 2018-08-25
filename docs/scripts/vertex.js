@@ -16,13 +16,13 @@ Example:
 3 --> 11 --> -1, 1, 1
 */
 
-function getVertices(dimensions) {
+function getVertices(dimension) {
 
-	var n = Math.pow(2, dimensions);
+	var n = Math.pow(2, dimension);
 	var vertices = new Array(n);
 	var vertex = void 0;
 
-	for (var i = 0; i < Math.pow(2, dimensions); i++) {
+	for (var i = 0; i < Math.pow(2, dimension); i++) {
 		// Generate binary number
 		vertex = i.toString(2);
 
@@ -32,7 +32,7 @@ function getVertices(dimensions) {
   In base 2, the number of digits we need to encode the number is log2(n)
   Here, we have log2(2^{dimensions}) = {dimensions}
   */
-		while (vertex.length < dimensions) {
+		while (vertex.length < dimension) {
 			vertex = '0' + vertex;
 		}
 

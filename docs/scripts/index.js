@@ -15,14 +15,19 @@ var DIMENSION = 4;
 var SCALING = 500;
 var SPEED = 0.01;
 var ISOMETRIC = false;
-var ROTATIONS = ['XW', 'YZ'];
+var ROTATIONS = [[0, 3], [1, 2]];
 
 // Settings and constants
 var HEIGHT = 400,
     WIDTH = 400;
 var FIGURE = void 0;
 var NEXTFRAME = void 0;
+var ANGLE = void 0;
+// I needed a list of all the rotation planes (2 axes) indices
+// to avoid generating it every time the user changed the rotation
+var ALLROTATIONS = void 0;
 
+// The init function assumes the 
 function init() {
 	// Stop animation if there is one
 	cancelAnimationFrame(NEXTFRAME);
@@ -34,8 +39,10 @@ function init() {
 	// Center the canvas
 	ctx.setTransform(1, 0, 0, 1, WIDTH / 2, HEIGHT / 2);
 
-	// Init the global FIGURE variable
+	// Init global variable
 	FIGURE = getVertices(DIMENSION);
+	ALLROTATIONS = getListOfRotations(DIMENSION);
+	ANGLE = 0;
 
 	draw();
 }

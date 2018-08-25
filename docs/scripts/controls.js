@@ -127,27 +127,30 @@ CONTROLS.init.rotations = function () {
  I'm creating checkboxes + label then appending it to the form innerHTML
  */
 
-	var rotations = Object.keys(getRotationMatrix[DIMENSION - 1]);
 	var checkbox = void 0,
-	    label = void 0;
+	    label = void 0,
+	    text = void 0;
+	var activeRotations = JSON.stringify(ROTATIONS);
 
 	// Reset the form
 	this.DOM.forms.rotations.innerHTML = '';
 	// Reset the children
 	this.DOM.children.rotations = [];
 
-	for (var i = 0; i < rotations.length; i++) {
+	for (var i = 0; i < ALLROTATIONS.length; i++) {
+		text = getAxisName(ALLROTATIONS[i][0]) + getAxisName(ALLROTATIONS[i][1]);
+
 		checkbox = document.createElement('input');
 		checkbox.type = 'checkbox';
-		checkbox.id = rotations[i];
-		checkbox.value = rotations[i];
-		if (ROTATIONS.indexOf(rotations[i]) !== -1) {
+		checkbox.id = text;
+		// Check if the rotation of the checkbox is active = present in ROTATIONS
+		if (activeRotations.indexOf(JSON.stringify(ALLROTATIONS[i])) !== -1) {
 			checkbox.checked = true;
 		}
 
 		label = document.createElement('label');
-		label.htmlFor = rotations[i];
-		label.innerHTML = rotations[i];
+		label.htmlFor = text;
+		label.innerHTML = text;
 
 		this.DOM.children.rotations[i] = checkbox;
 		this.DOM.forms.rotations.appendChild(checkbox);
@@ -169,8 +172,10 @@ CONTROLS.callback.dimension = function () {
 		return false;
 	}
 
-	// Take the value and clamp it between [2, 4]
-	value = Math.min(4, Math.max(1, value));
+	// Take the value and clamp it between [2, 10]
+	// Dimension 10 has 1024 vertices, which is a lot
+	value = Math.min(10, Math.max(2, value));
+
 	// Ka-bam, reset everything
 	DIMENSION = value;
 	ROTATIONS = [];
@@ -228,7 +233,7 @@ CONTROLS.callback.rotations = function () {
 	for (var i = 0; i < this.DOM.children.rotations.length; i++) {
 		checkbox = this.DOM.children.rotations[i];
 		if (checkbox.checked) {
-			ROTATIONS.push(checkbox.value);
+			ROTATIONS.push(ALLROTATIONS[i]);
 		}
 	}
 };
