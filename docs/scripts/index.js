@@ -27,6 +27,11 @@ var ANGLE = void 0;
 // to avoid generating it every time the user changed the rotation
 var ALLROTATIONS = void 0;
 
+// Figure stats, the code doesn't need it, but it's nice to have
+var NAMES = ['Square', 'Cube', 'Tesseract', 'Penteract', 'Hexeract', 'Hepteract', 'Octeract', 'Enneract', 'Dekeract'];
+var VERTICES = void 0,
+    EDGES = void 0;
+
 // The init function assumes the 
 function init() {
 	// Stop animation if there is one
@@ -44,6 +49,13 @@ function init() {
 	ALLROTATIONS = getListOfRotations(DIMENSION);
 	ANGLE = 0;
 
+	// Update the info text
+	VERTICES = Math.pow(2, DIMENSION);
+	EDGES = DIMENSION * Math.pow(2, DIMENSION - 1);
+	document.getElementById('name').innerHTML = NAMES[DIMENSION - 2];
+	document.getElementById('info').innerHTML = VERTICES + ' vertices, ' + EDGES + ' edges';
+
+	// Dräw, bröther
 	draw();
 }
 

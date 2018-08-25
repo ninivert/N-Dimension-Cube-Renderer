@@ -24,6 +24,10 @@ let ANGLE
 // to avoid generating it every time the user changed the rotation
 let ALLROTATIONS
 
+// Figure stats, the code doesn't need it, but it's nice to have
+const NAMES = ['Square', 'Cube', 'Tesseract', 'Penteract', 'Hexeract', 'Hepteract', 'Octeract', 'Enneract', 'Dekeract']
+let VERTICES, EDGES
+
 // The init function assumes the 
 function init() {
 	// Stop animation if there is one
@@ -41,6 +45,13 @@ function init() {
 	ALLROTATIONS = getListOfRotations(DIMENSION)
 	ANGLE = 0
 
+	// Update the info text
+	VERTICES = Math.pow(2, DIMENSION)
+	EDGES = DIMENSION * Math.pow(2, DIMENSION-1)
+	document.getElementById('name').innerHTML = NAMES[DIMENSION-2]
+	document.getElementById('info').innerHTML = `${VERTICES} vertices, ${EDGES} edges`
+
+	// Dräw, bröther
 	draw()
 }
 
