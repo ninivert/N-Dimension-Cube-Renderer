@@ -170,7 +170,7 @@ CONTROLS.callback.dimension = function() {
 
 	// Take the value and clamp it between [2, 10]
 	// Dimension 10 has 1024 vertices, which is a lot
-	value = Math.min(10, Math.max(2, value))
+	value = Math.min(10, Math.max(2, value)) // <-- change the 10 value to your max dimension!
 
 	// Ka-bam, reset everything
 	DIMENSION = value
